@@ -61,8 +61,14 @@ def bolding(text):
                 new_part = f"<b>{part[0]}</b>"
                 new_part += ''.join(part[1:])
                 new_text += ' ' + new_part
+            elif len(part) % 2 == 0:
+                point = ceil(int(len(part) * 0.5))
+                new_part = ''
+                new_part = f"<b>{part[0:point]}</b>"
+                new_part += ''.join(part[point:])
+                new_text += ' ' + new_part 
             else:
-                point = ceil(log(len(part), 2))
+                point = ceil(int(len(part) * 0.6))
                 new_part = ''
                 new_part = f"<b>{part[0:point]}</b>"
                 new_part += ''.join(part[point:])
@@ -117,10 +123,7 @@ for html in htmls:
 
     full_html = ''
     for html_part in data_html:
-        # print(html_part, '\n')
         if html_part[0] == 'Data:':
-            # full_html += html_part[1]
-            # full_html += f"<b>{html_part[1]}</b>"
             full_html += bolding(html_part[1])
             
 
